@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,9 @@ namespace First
 {
     class GCD
     {
-        public static int GetGcdByEuclidean(int a, int b)
+        public static int GetGcdByEuclidean(int a, int b, out double time)
         {
+            Stopwatch timer = Stopwatch.StartNew ();
             if (a == 0 && b == 0)
             {
                 throw new ArgumentException (nameof (GetGcdByEuclidean));
@@ -43,6 +45,8 @@ namespace First
                     b %= a;
             }
 
+            timer.Stop ();
+            time = timer.ElapsedTicks;
             return a + b;
         }
 
@@ -169,6 +173,74 @@ namespace First
                 return 1;
 
             return otherResult + result;
+        }
+
+        public static int GetGcdByStein(int a, int b, out double time)
+        {
+            Stopwatch timer = Stopwatch.StartNew ();
+            if (a == 0 && b == 0)
+            {
+                throw new ArgumentException (nameof (GetGcdByStein));
+            }
+
+            if (a == int.MinValue)
+                throw new ArgumentOutOfRangeException (nameof (a));
+
+            if (b == int.MinValue)
+                throw new ArgumentOutOfRangeException (nameof (b));
+
+            if (a < 0)
+                a *= -1;
+
+            if (b < 0)
+                b *= -1;
+
+            if (a == 0)
+            {
+                timer.Stop ();
+                time = timer.ElapsedTicks;
+                return b;
+            }
+            if (b == 0)
+            {
+                timer.Stop ();
+                time = timer.ElapsedTicks;
+                return a;
+            }
+
+            if (a == b)
+            {
+                timer.Stop ();
+                time = timer.ElapsedTicks;
+                return a;
+            }
+
+            int count = 1;
+
+            while(a != 0 && b != 0)
+            {
+                while(a % 2 == 0 && b % 2 == 0)
+                {
+                    a /= 2;
+                    b /= 2;
+                    count *= 2;
+                }
+
+                if (a % 2 == 0 && b % 2 != 0)
+                    a /= 2;
+
+                if (a % 2 != 0 && b % 2 == 0)
+                    b /= 2;
+
+                if (a > b)
+                    a -= b;
+                else
+                    b -= a;
+            }
+
+            timer.Stop ();
+            time = timer.ElapsedTicks;
+            return (a + b) * count;
         }
     }
 }
