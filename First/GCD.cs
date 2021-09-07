@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace First
 {
-    class GCD
+    public class GCD
     {
         public static int GetGcdByEuclidean(int a, int b, out double time)
         {
@@ -241,6 +241,16 @@ namespace First
             timer.Stop ();
             time = timer.ElapsedTicks;
             return (a + b) * count;
+        }
+
+        public static void GetBetterTime(double timeEuclidean, double timeStein)
+        {
+            Console.WriteLine ("Time:\n" + "Euclidean:" + timeEuclidean + "\tStein:" + timeStein);
+
+            if (timeEuclidean < timeStein)
+                Console.WriteLine ("Euclidean's method has the best time");
+            else
+                Console.WriteLine ("Stein's method has the best time");
         }
     }
 }
