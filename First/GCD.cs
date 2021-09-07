@@ -7,8 +7,18 @@ using System.Threading.Tasks;
 
 namespace First
 {
+    /// <summary>
+    /// The class has static methods for finding GCD by Stein's and Euclidean's algorithms.
+    /// </summary>
     public class GCD
     {
+        /// <summary>
+        /// Calculates GCD of two integer by the Euclidean algorithm. 
+        /// </summary>
+        /// <param name="a">First integer</param>
+        /// <param name="b">Second integer</param>
+        /// <param name="time">Calculating time</param>
+        /// <returns>The GCD value</returns>
         public static int GetGcdByEuclidean(int a, int b, out double time)
         {
             Stopwatch timer = Stopwatch.StartNew ();
@@ -50,6 +60,13 @@ namespace First
             return a + b;
         }
 
+        /// <summary>
+        /// Calculates GCD of three integer by the Euclidean algorithm.
+        /// </summary>
+        /// <param name="a">First integer</param>
+        /// <param name="b">Second integer</param>
+        /// <param name="c">Third integer</param>
+        /// <returns>The GCD value</returns>
         public static int GetGcdByEuclidean(int a, int b, int c)
         {
             if (a == 0 && b == 0 && c == 0)
@@ -110,6 +127,13 @@ namespace First
             return result;
         }
 
+        /// <summary>
+        /// Calculates GCD of two and more integer by the Euclidean algorithm.
+        /// </summary>
+        /// <param name="a">First integer</param>
+        /// <param name="b">Second integer</param>
+        /// <param name="other">Other integers</param>
+        /// <returns>The GCD value</returns>
         public static int GetGcdByEuclidean(int a, int b, params int[] other)
         {
             if (a == 0 && b == 0 && other.All (i => i == 0))
@@ -175,6 +199,13 @@ namespace First
             return otherResult + result;
         }
 
+        /// <summary>
+        /// Calculates GCD of two integer by the Stein algorithm.
+        /// </summary>
+        /// <param name="a">First integer</param>
+        /// <param name="b">Second integer</param>
+        /// <param name="time">Calculating time</param>
+        /// <returns></returns>
         public static int GetGcdByStein(int a, int b, out double time)
         {
             Stopwatch timer = Stopwatch.StartNew ();
@@ -243,6 +274,11 @@ namespace First
             return (a + b) * count;
         }
 
+        /// <summary>
+        /// Gets better time of calculating between Euclidean and Stein algorithm.
+        /// </summary>
+        /// <param name="timeEuclidean">Time of Euclidean algorithm</param>
+        /// <param name="timeStein">Time of Stein algorithm</param>
         public static void GetBetterTime(double timeEuclidean, double timeStein)
         {
             Console.WriteLine ("Time:\n" + "Euclidean:" + timeEuclidean + "\tStein:" + timeStein);
