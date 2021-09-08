@@ -172,17 +172,15 @@ namespace First
 
             for (int i = 1; i < other.Length; i++)
             {
-                if (other[i - 1] == 0 || other[i] == 0)
+                if (!(other[i - 1] == 0 || other[i] == 0))
                 {
-                    continue;
+                    if (other[i - 1] > other[i])
+                        other[i - 1] %= other[i];
+                    else
+                        other[i] %= other[i - 1];
+
+                    otherResult = other[i - 1] + other[i];
                 }
-
-                if (other[i - 1] > other[i])
-                    other[i - 1] %= other[i];
-                else
-                    other[i] %= other[i - 1];
-
-                otherResult = other[i - 1] + other[i];
             }
 
             while(result != 0 && otherResult != 0)
