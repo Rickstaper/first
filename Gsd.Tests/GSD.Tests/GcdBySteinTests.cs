@@ -10,16 +10,16 @@ namespace First.Tests
         [TestCase(945, 0, ExpectedResult = 945)]
         [TestCase(0, -300, ExpectedResult = 300)]
         [TestCase(2672, 5678, ExpectedResult = 334)]
-        public int GetGcdBySteinWithTwoArgumtns (int a, int b) => GetGcdByStein (a, b, out double _);
+        public int GetGcdByStein_WithTwoArgumtns (int a, int b) => GetGcdByStein (a, b, out double _);
 
         [Test]
-        public void GetGcdBySteinWithTwoZero_ThrowArgumentException()
+        public void GetGcdByStein_WithTwoZero_ThrowArgumentException()
         {
             Assert.Throws<ArgumentException> (() => GetGcdByStein (0, 0, out double _), "All arguments cannot be 0");
         }
 
         [TestCase(int.MinValue, 225)]
-        public void GetGcdBySteinWithMinValue_ThrowArgumentOutOfRangeException(int a, int b)
+        public void GetGcdByStein_WithMinValue_ThrowArgumentOutOfRangeException(int a, int b)
         {
             Assert.Throws<ArgumentOutOfRangeException> (() => GetGcdByStein (a, b, out double _), $"Argument cannot be {int.MinValue}");
         }
